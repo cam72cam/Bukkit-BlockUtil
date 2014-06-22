@@ -3,27 +3,21 @@ package me.cmesh.BlockUtil;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
-public class WaterUtil {
-	private WaterUtil() {}
+public class WaterUtil extends LiquidUtil{
+	public void setType(Block block) {
+		block.setType(Material.STATIONARY_WATER);
+	}
 
-	public static boolean isWater(Block b) {
-		return b.getType() == Material.WATER || b.getType() == Material.STATIONARY_WATER;
+	public boolean isType(Material m) {
+		return isWater(m);
+	}
+	public static boolean isWater(Material m) {
+		return m == Material.WATER || m == Material.STATIONARY_WATER;
 	}
 	
-	@SuppressWarnings("deprecation")
-	public static boolean isWaterSource(Block b) {
-		return isWater(b) && b.getData() == 0;
-	}
+	public static Material bucket = Material.WATER_BUCKET;
 	
-	@SuppressWarnings("deprecation")
-	public static void setSource(Block b) {
-		b.setType(Material.WATER);
-		b.setData((byte) 0);
-	}
-	
-	@SuppressWarnings("deprecation")
-	public static void setFlowing(Block b, byte level) {
-		b.setType(Material.WATER);
-		b.setData(level);
+	public Material getBucket() {
+		return bucket;
 	}
 }
